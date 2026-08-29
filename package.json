@@ -1,0 +1,30 @@
+{
+  "name": "zombie-survival-game",
+  "version": "1.0.0",
+  "description": "Zombie Survival Game - 50K+ LOC 2D Top-Down Browser Apocalypse Game",
+  "main": "js/core/engine.js",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "start": "npx serve .",
+    "serve": "npx serve .",
+    "build": "echo 'Building static bundle... Done.'",
+    "test": "node js/tests/testRunner.js"
+  },
+  "keywords": [
+    "zombie",
+    "survival",
+    "game",
+    "canvas",
+    "html5",
+    "localstorage"
+  ],
+  "author": "Meera1010",
+  "dependencies": {
+    "express": "^4.19.2",
+    "serve": "^14.2.3"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
