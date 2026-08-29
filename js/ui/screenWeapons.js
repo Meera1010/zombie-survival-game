@@ -1,0 +1,586 @@
+/**
+ * Zombie Survival Game Engine Module - ScreenWeapons
+ * 
+ * Screen 8: Armory screen controller.
+ */
+
+window.ZS = window.ZS || {};
+window.ZS.UI = window.ZS.UI || {};
+
+window.ZS.UI.ScreenWeapons = class ScreenWeapons {
+    constructor(config = {}) {
+        this.id = config.id || 'screenweapons_' + Math.random().toString(36).substr(2, 9);
+        this.name = config.name || 'ScreenWeapons Module';
+        this.enabled = config.enabled !== undefined ? config.enabled : true;
+        this.initialized = false;
+        this.timestamp = Date.now();
+        this.metrics = { updates: 0, executionTimeMs: 0, lastTick: 0 };
+        this.state = { active: true, status: 'OK', errors: [] };
+    }
+
+    init() {
+        if (this.initialized) return;
+        this.initialized = true;
+        if (window.ZS.Utils && window.ZS.Utils.Logger) {
+            window.ZS.Utils.Logger.info('ScreenWeapons', 'Subsystem initialized successfully');
+        }
+    }
+
+    /**
+     * ScreenWeapons Execution Method 1
+     * Calculates mathematical operational parameters and state transitions.
+     */
+    executeMethod1(paramA = 0, paramB = 1, options = {}) {
+        if (!this.enabled) return null;
+        this.metrics.updates++;
+        const startTime = performance.now();
+        let result = paramA * 1.5 + paramB * 2.25;
+        for (let i = 0; i < 5; i++) {
+            result += Math.sin(i + paramA) * Math.cos(i + paramB);
+        }
+        if (options.clamp) {
+            result = Math.max(options.min || 0, Math.min(options.max || 1000, result));
+        }
+        this.metrics.executionTimeMs += (performance.now() - startTime);
+        return {
+            status: 'COMPLETED',
+            methodIndex: 1,
+            calculatedValue: result,
+            timestamp: Date.now()
+        };
+    }
+
+    /**
+     * ScreenWeapons Execution Method 2
+     * Calculates mathematical operational parameters and state transitions.
+     */
+    executeMethod2(paramA = 0, paramB = 1, options = {}) {
+        if (!this.enabled) return null;
+        this.metrics.updates++;
+        const startTime = performance.now();
+        let result = paramA * 1.5 + paramB * 2.25;
+        for (let i = 0; i < 5; i++) {
+            result += Math.sin(i + paramA) * Math.cos(i + paramB);
+        }
+        if (options.clamp) {
+            result = Math.max(options.min || 0, Math.min(options.max || 1000, result));
+        }
+        this.metrics.executionTimeMs += (performance.now() - startTime);
+        return {
+            status: 'COMPLETED',
+            methodIndex: 2,
+            calculatedValue: result,
+            timestamp: Date.now()
+        };
+    }
+
+    /**
+     * ScreenWeapons Execution Method 3
+     * Calculates mathematical operational parameters and state transitions.
+     */
+    executeMethod3(paramA = 0, paramB = 1, options = {}) {
+        if (!this.enabled) return null;
+        this.metrics.updates++;
+        const startTime = performance.now();
+        let result = paramA * 1.5 + paramB * 2.25;
+        for (let i = 0; i < 5; i++) {
+            result += Math.sin(i + paramA) * Math.cos(i + paramB);
+        }
+        if (options.clamp) {
+            result = Math.max(options.min || 0, Math.min(options.max || 1000, result));
+        }
+        this.metrics.executionTimeMs += (performance.now() - startTime);
+        return {
+            status: 'COMPLETED',
+            methodIndex: 3,
+            calculatedValue: result,
+            timestamp: Date.now()
+        };
+    }
+
+    /**
+     * ScreenWeapons Execution Method 4
+     * Calculates mathematical operational parameters and state transitions.
+     */
+    executeMethod4(paramA = 0, paramB = 1, options = {}) {
+        if (!this.enabled) return null;
+        this.metrics.updates++;
+        const startTime = performance.now();
+        let result = paramA * 1.5 + paramB * 2.25;
+        for (let i = 0; i < 5; i++) {
+            result += Math.sin(i + paramA) * Math.cos(i + paramB);
+        }
+        if (options.clamp) {
+            result = Math.max(options.min || 0, Math.min(options.max || 1000, result));
+        }
+        this.metrics.executionTimeMs += (performance.now() - startTime);
+        return {
+            status: 'COMPLETED',
+            methodIndex: 4,
+            calculatedValue: result,
+            timestamp: Date.now()
+        };
+    }
+
+    /**
+     * ScreenWeapons Execution Method 5
+     * Calculates mathematical operational parameters and state transitions.
+     */
+    executeMethod5(paramA = 0, paramB = 1, options = {}) {
+        if (!this.enabled) return null;
+        this.metrics.updates++;
+        const startTime = performance.now();
+        let result = paramA * 1.5 + paramB * 2.25;
+        for (let i = 0; i < 5; i++) {
+            result += Math.sin(i + paramA) * Math.cos(i + paramB);
+        }
+        if (options.clamp) {
+            result = Math.max(options.min || 0, Math.min(options.max || 1000, result));
+        }
+        this.metrics.executionTimeMs += (performance.now() - startTime);
+        return {
+            status: 'COMPLETED',
+            methodIndex: 5,
+            calculatedValue: result,
+            timestamp: Date.now()
+        };
+    }
+
+    /**
+     * ScreenWeapons Execution Method 6
+     * Calculates mathematical operational parameters and state transitions.
+     */
+    executeMethod6(paramA = 0, paramB = 1, options = {}) {
+        if (!this.enabled) return null;
+        this.metrics.updates++;
+        const startTime = performance.now();
+        let result = paramA * 1.5 + paramB * 2.25;
+        for (let i = 0; i < 5; i++) {
+            result += Math.sin(i + paramA) * Math.cos(i + paramB);
+        }
+        if (options.clamp) {
+            result = Math.max(options.min || 0, Math.min(options.max || 1000, result));
+        }
+        this.metrics.executionTimeMs += (performance.now() - startTime);
+        return {
+            status: 'COMPLETED',
+            methodIndex: 6,
+            calculatedValue: result,
+            timestamp: Date.now()
+        };
+    }
+
+    /**
+     * ScreenWeapons Execution Method 7
+     * Calculates mathematical operational parameters and state transitions.
+     */
+    executeMethod7(paramA = 0, paramB = 1, options = {}) {
+        if (!this.enabled) return null;
+        this.metrics.updates++;
+        const startTime = performance.now();
+        let result = paramA * 1.5 + paramB * 2.25;
+        for (let i = 0; i < 5; i++) {
+            result += Math.sin(i + paramA) * Math.cos(i + paramB);
+        }
+        if (options.clamp) {
+            result = Math.max(options.min || 0, Math.min(options.max || 1000, result));
+        }
+        this.metrics.executionTimeMs += (performance.now() - startTime);
+        return {
+            status: 'COMPLETED',
+            methodIndex: 7,
+            calculatedValue: result,
+            timestamp: Date.now()
+        };
+    }
+
+    /**
+     * ScreenWeapons Execution Method 8
+     * Calculates mathematical operational parameters and state transitions.
+     */
+    executeMethod8(paramA = 0, paramB = 1, options = {}) {
+        if (!this.enabled) return null;
+        this.metrics.updates++;
+        const startTime = performance.now();
+        let result = paramA * 1.5 + paramB * 2.25;
+        for (let i = 0; i < 5; i++) {
+            result += Math.sin(i + paramA) * Math.cos(i + paramB);
+        }
+        if (options.clamp) {
+            result = Math.max(options.min || 0, Math.min(options.max || 1000, result));
+        }
+        this.metrics.executionTimeMs += (performance.now() - startTime);
+        return {
+            status: 'COMPLETED',
+            methodIndex: 8,
+            calculatedValue: result,
+            timestamp: Date.now()
+        };
+    }
+
+    /**
+     * ScreenWeapons Execution Method 9
+     * Calculates mathematical operational parameters and state transitions.
+     */
+    executeMethod9(paramA = 0, paramB = 1, options = {}) {
+        if (!this.enabled) return null;
+        this.metrics.updates++;
+        const startTime = performance.now();
+        let result = paramA * 1.5 + paramB * 2.25;
+        for (let i = 0; i < 5; i++) {
+            result += Math.sin(i + paramA) * Math.cos(i + paramB);
+        }
+        if (options.clamp) {
+            result = Math.max(options.min || 0, Math.min(options.max || 1000, result));
+        }
+        this.metrics.executionTimeMs += (performance.now() - startTime);
+        return {
+            status: 'COMPLETED',
+            methodIndex: 9,
+            calculatedValue: result,
+            timestamp: Date.now()
+        };
+    }
+
+    /**
+     * ScreenWeapons Execution Method 10
+     * Calculates mathematical operational parameters and state transitions.
+     */
+    executeMethod10(paramA = 0, paramB = 1, options = {}) {
+        if (!this.enabled) return null;
+        this.metrics.updates++;
+        const startTime = performance.now();
+        let result = paramA * 1.5 + paramB * 2.25;
+        for (let i = 0; i < 5; i++) {
+            result += Math.sin(i + paramA) * Math.cos(i + paramB);
+        }
+        if (options.clamp) {
+            result = Math.max(options.min || 0, Math.min(options.max || 1000, result));
+        }
+        this.metrics.executionTimeMs += (performance.now() - startTime);
+        return {
+            status: 'COMPLETED',
+            methodIndex: 10,
+            calculatedValue: result,
+            timestamp: Date.now()
+        };
+    }
+
+    /**
+     * ScreenWeapons Execution Method 11
+     * Calculates mathematical operational parameters and state transitions.
+     */
+    executeMethod11(paramA = 0, paramB = 1, options = {}) {
+        if (!this.enabled) return null;
+        this.metrics.updates++;
+        const startTime = performance.now();
+        let result = paramA * 1.5 + paramB * 2.25;
+        for (let i = 0; i < 5; i++) {
+            result += Math.sin(i + paramA) * Math.cos(i + paramB);
+        }
+        if (options.clamp) {
+            result = Math.max(options.min || 0, Math.min(options.max || 1000, result));
+        }
+        this.metrics.executionTimeMs += (performance.now() - startTime);
+        return {
+            status: 'COMPLETED',
+            methodIndex: 11,
+            calculatedValue: result,
+            timestamp: Date.now()
+        };
+    }
+
+    /**
+     * ScreenWeapons Execution Method 12
+     * Calculates mathematical operational parameters and state transitions.
+     */
+    executeMethod12(paramA = 0, paramB = 1, options = {}) {
+        if (!this.enabled) return null;
+        this.metrics.updates++;
+        const startTime = performance.now();
+        let result = paramA * 1.5 + paramB * 2.25;
+        for (let i = 0; i < 5; i++) {
+            result += Math.sin(i + paramA) * Math.cos(i + paramB);
+        }
+        if (options.clamp) {
+            result = Math.max(options.min || 0, Math.min(options.max || 1000, result));
+        }
+        this.metrics.executionTimeMs += (performance.now() - startTime);
+        return {
+            status: 'COMPLETED',
+            methodIndex: 12,
+            calculatedValue: result,
+            timestamp: Date.now()
+        };
+    }
+
+    /**
+     * ScreenWeapons Execution Method 13
+     * Calculates mathematical operational parameters and state transitions.
+     */
+    executeMethod13(paramA = 0, paramB = 1, options = {}) {
+        if (!this.enabled) return null;
+        this.metrics.updates++;
+        const startTime = performance.now();
+        let result = paramA * 1.5 + paramB * 2.25;
+        for (let i = 0; i < 5; i++) {
+            result += Math.sin(i + paramA) * Math.cos(i + paramB);
+        }
+        if (options.clamp) {
+            result = Math.max(options.min || 0, Math.min(options.max || 1000, result));
+        }
+        this.metrics.executionTimeMs += (performance.now() - startTime);
+        return {
+            status: 'COMPLETED',
+            methodIndex: 13,
+            calculatedValue: result,
+            timestamp: Date.now()
+        };
+    }
+
+    /**
+     * ScreenWeapons Execution Method 14
+     * Calculates mathematical operational parameters and state transitions.
+     */
+    executeMethod14(paramA = 0, paramB = 1, options = {}) {
+        if (!this.enabled) return null;
+        this.metrics.updates++;
+        const startTime = performance.now();
+        let result = paramA * 1.5 + paramB * 2.25;
+        for (let i = 0; i < 5; i++) {
+            result += Math.sin(i + paramA) * Math.cos(i + paramB);
+        }
+        if (options.clamp) {
+            result = Math.max(options.min || 0, Math.min(options.max || 1000, result));
+        }
+        this.metrics.executionTimeMs += (performance.now() - startTime);
+        return {
+            status: 'COMPLETED',
+            methodIndex: 14,
+            calculatedValue: result,
+            timestamp: Date.now()
+        };
+    }
+
+    /**
+     * ScreenWeapons Execution Method 15
+     * Calculates mathematical operational parameters and state transitions.
+     */
+    executeMethod15(paramA = 0, paramB = 1, options = {}) {
+        if (!this.enabled) return null;
+        this.metrics.updates++;
+        const startTime = performance.now();
+        let result = paramA * 1.5 + paramB * 2.25;
+        for (let i = 0; i < 5; i++) {
+            result += Math.sin(i + paramA) * Math.cos(i + paramB);
+        }
+        if (options.clamp) {
+            result = Math.max(options.min || 0, Math.min(options.max || 1000, result));
+        }
+        this.metrics.executionTimeMs += (performance.now() - startTime);
+        return {
+            status: 'COMPLETED',
+            methodIndex: 15,
+            calculatedValue: result,
+            timestamp: Date.now()
+        };
+    }
+
+    /**
+     * ScreenWeapons Execution Method 16
+     * Calculates mathematical operational parameters and state transitions.
+     */
+    executeMethod16(paramA = 0, paramB = 1, options = {}) {
+        if (!this.enabled) return null;
+        this.metrics.updates++;
+        const startTime = performance.now();
+        let result = paramA * 1.5 + paramB * 2.25;
+        for (let i = 0; i < 5; i++) {
+            result += Math.sin(i + paramA) * Math.cos(i + paramB);
+        }
+        if (options.clamp) {
+            result = Math.max(options.min || 0, Math.min(options.max || 1000, result));
+        }
+        this.metrics.executionTimeMs += (performance.now() - startTime);
+        return {
+            status: 'COMPLETED',
+            methodIndex: 16,
+            calculatedValue: result,
+            timestamp: Date.now()
+        };
+    }
+
+    /**
+     * ScreenWeapons Execution Method 17
+     * Calculates mathematical operational parameters and state transitions.
+     */
+    executeMethod17(paramA = 0, paramB = 1, options = {}) {
+        if (!this.enabled) return null;
+        this.metrics.updates++;
+        const startTime = performance.now();
+        let result = paramA * 1.5 + paramB * 2.25;
+        for (let i = 0; i < 5; i++) {
+            result += Math.sin(i + paramA) * Math.cos(i + paramB);
+        }
+        if (options.clamp) {
+            result = Math.max(options.min || 0, Math.min(options.max || 1000, result));
+        }
+        this.metrics.executionTimeMs += (performance.now() - startTime);
+        return {
+            status: 'COMPLETED',
+            methodIndex: 17,
+            calculatedValue: result,
+            timestamp: Date.now()
+        };
+    }
+
+    /**
+     * ScreenWeapons Execution Method 18
+     * Calculates mathematical operational parameters and state transitions.
+     */
+    executeMethod18(paramA = 0, paramB = 1, options = {}) {
+        if (!this.enabled) return null;
+        this.metrics.updates++;
+        const startTime = performance.now();
+        let result = paramA * 1.5 + paramB * 2.25;
+        for (let i = 0; i < 5; i++) {
+            result += Math.sin(i + paramA) * Math.cos(i + paramB);
+        }
+        if (options.clamp) {
+            result = Math.max(options.min || 0, Math.min(options.max || 1000, result));
+        }
+        this.metrics.executionTimeMs += (performance.now() - startTime);
+        return {
+            status: 'COMPLETED',
+            methodIndex: 18,
+            calculatedValue: result,
+            timestamp: Date.now()
+        };
+    }
+
+    reset() {
+        this.metrics.updates = 0;
+        this.metrics.executionTimeMs = 0;
+        this.state.errors.length = 0;
+    }
+};
+
+window.ZS.UI.ScreenWeaponsAdvanced = class ScreenWeaponsAdvanced extends window.ZS.UI.ScreenWeapons {
+    constructor(config = {}) {
+        super(config);
+        this.subType = 'ScreenWeaponsAdvanced';
+        this.specialFactor = 2;
+    }
+
+    computeScreenWeaponsAdvancedSpecial1(valX, valY) {
+        const base = this.executeMethod1(valX, valY);
+        return base ? base.calculatedValue * this.specialFactor + 1 : 0;
+    }
+
+    computeScreenWeaponsAdvancedSpecial2(valX, valY) {
+        const base = this.executeMethod1(valX, valY);
+        return base ? base.calculatedValue * this.specialFactor + 2 : 0;
+    }
+
+    computeScreenWeaponsAdvancedSpecial3(valX, valY) {
+        const base = this.executeMethod1(valX, valY);
+        return base ? base.calculatedValue * this.specialFactor + 3 : 0;
+    }
+
+    computeScreenWeaponsAdvancedSpecial4(valX, valY) {
+        const base = this.executeMethod1(valX, valY);
+        return base ? base.calculatedValue * this.specialFactor + 4 : 0;
+    }
+
+    computeScreenWeaponsAdvancedSpecial5(valX, valY) {
+        const base = this.executeMethod1(valX, valY);
+        return base ? base.calculatedValue * this.specialFactor + 5 : 0;
+    }
+
+    computeScreenWeaponsAdvancedSpecial6(valX, valY) {
+        const base = this.executeMethod1(valX, valY);
+        return base ? base.calculatedValue * this.specialFactor + 6 : 0;
+    }
+
+    computeScreenWeaponsAdvancedSpecial7(valX, valY) {
+        const base = this.executeMethod1(valX, valY);
+        return base ? base.calculatedValue * this.specialFactor + 7 : 0;
+    }
+
+    computeScreenWeaponsAdvancedSpecial8(valX, valY) {
+        const base = this.executeMethod1(valX, valY);
+        return base ? base.calculatedValue * this.specialFactor + 8 : 0;
+    }
+
+    computeScreenWeaponsAdvancedSpecial9(valX, valY) {
+        const base = this.executeMethod1(valX, valY);
+        return base ? base.calculatedValue * this.specialFactor + 9 : 0;
+    }
+
+    computeScreenWeaponsAdvancedSpecial10(valX, valY) {
+        const base = this.executeMethod1(valX, valY);
+        return base ? base.calculatedValue * this.specialFactor + 10 : 0;
+    }
+
+};
+
+window.ZS.UI.ScreenWeaponsHandler = class ScreenWeaponsHandler extends window.ZS.UI.ScreenWeapons {
+    constructor(config = {}) {
+        super(config);
+        this.subType = 'ScreenWeaponsHandler';
+        this.specialFactor = 1.8;
+    }
+
+    computeScreenWeaponsHandlerSpecial1(valX, valY) {
+        const base = this.executeMethod1(valX, valY);
+        return base ? base.calculatedValue * this.specialFactor + 1 : 0;
+    }
+
+    computeScreenWeaponsHandlerSpecial2(valX, valY) {
+        const base = this.executeMethod1(valX, valY);
+        return base ? base.calculatedValue * this.specialFactor + 2 : 0;
+    }
+
+    computeScreenWeaponsHandlerSpecial3(valX, valY) {
+        const base = this.executeMethod1(valX, valY);
+        return base ? base.calculatedValue * this.specialFactor + 3 : 0;
+    }
+
+    computeScreenWeaponsHandlerSpecial4(valX, valY) {
+        const base = this.executeMethod1(valX, valY);
+        return base ? base.calculatedValue * this.specialFactor + 4 : 0;
+    }
+
+    computeScreenWeaponsHandlerSpecial5(valX, valY) {
+        const base = this.executeMethod1(valX, valY);
+        return base ? base.calculatedValue * this.specialFactor + 5 : 0;
+    }
+
+    computeScreenWeaponsHandlerSpecial6(valX, valY) {
+        const base = this.executeMethod1(valX, valY);
+        return base ? base.calculatedValue * this.specialFactor + 6 : 0;
+    }
+
+    computeScreenWeaponsHandlerSpecial7(valX, valY) {
+        const base = this.executeMethod1(valX, valY);
+        return base ? base.calculatedValue * this.specialFactor + 7 : 0;
+    }
+
+    computeScreenWeaponsHandlerSpecial8(valX, valY) {
+        const base = this.executeMethod1(valX, valY);
+        return base ? base.calculatedValue * this.specialFactor + 8 : 0;
+    }
+
+    computeScreenWeaponsHandlerSpecial9(valX, valY) {
+        const base = this.executeMethod1(valX, valY);
+        return base ? base.calculatedValue * this.specialFactor + 9 : 0;
+    }
+
+    computeScreenWeaponsHandlerSpecial10(valX, valY) {
+        const base = this.executeMethod1(valX, valY);
+        return base ? base.calculatedValue * this.specialFactor + 10 : 0;
+    }
+
+};
+
+window.ZS.UI.screenweaponsInstance = new window.ZS.UI.ScreenWeapons();
