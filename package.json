@@ -4,7 +4,7 @@
   "description": "Zombie Survival Game - 50K+ LOC 2D Top-Down Browser Apocalypse Game",
   "main": "js/core/engine.js",
   "private": true,
-  "license": "MIT",
+  "license": "UNLICENSED",
   "scripts": {
     "start": "npx serve .",
     "serve": "npx serve .",
