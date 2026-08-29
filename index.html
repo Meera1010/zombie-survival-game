@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZOMBIE SURVIVAL - Top-Down Apocalypse</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Main Render Canvas -->
+        <canvas id="gameCanvas"></canvas>
+
+        <!-- UI Screen Containers -->
+
+        <!-- 1. Loading Screen -->
+        <div id="screen-loading" class="ui-screen active">
+            <div class="panel text-center">
+                <h1 class="glitch-title">ZOMBIE SURVIVAL</h1>
+                <p class="subtitle">LOADING SURVIVAL ENGINE...</p>
+                <div class="progress-bar-outer">
+                    <div id="loading-bar-fill" class="progress-bar-inner"></div>
+                </div>
+                <p class="tip-text">TIP: Keep moving. Standing still makes you easy prey for Sprinters and Crawlers.</p>
+            </div>
+        </div>
+
+        <!-- 2. Main Menu -->
+        <div id="screen-menu" class="ui-screen">
+            <div class="panel main-menu-panel">
+                <h1 class="main-title">ZOMBIE SURVIVAL</h1>
+                <p class="tagline">50K+ LOC SURVIVAL ENGINE</p>
+                <div class="menu-buttons">
+                    <button id="btn-main-new" class="btn btn-primary">NEW GAME</button>
+                    <button id="btn-main-continue" class="btn btn-secondary">CONTINUE</button>
+                    <button id="btn-main-settings" class="btn btn-secondary">SETTINGS</button>
+                    <button id="btn-main-help" class="btn btn-secondary">CONTROLS & HELP</button>
+                    <button id="btn-main-credits" class="btn btn-secondary">CREDITS</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. New Game Screen -->
+        <div id="screen-new-game" class="ui-screen">
+            <div class="panel">
+                <h2>NEW SURVIVOR PROFILE</h2>
+                <div class="form-group">
+                    <label for="input-player-name">SURVIVOR NAME:</label>
+                    <input type="text" id="input-player-name" value="Survivor" placeholder="Enter name...">
+                </div>
+                <div class="form-group">
+                    <label for="select-difficulty">DIFFICULTY MODE:</label>
+                    <select id="select-difficulty">
+                        <option value="EASY">Casual Survivor (Easy)</option>
+                        <option value="NORMAL" selected>Standard Apocalypse (Normal)</option>
+                        <option value="HARD">Nightmare Horde (Hard)</option>
+                        <option value="NIGHTMARE">Extinction Mode (Nightmare)</option>
+                    </select>
+                </div>
+                <div class="btn-row">
+                    <button id="btn-newgame-start" class="btn btn-primary">START APOCALYPSE</button>
+                    <button id="btn-newgame-back" class="btn btn-secondary">BACK</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Continue Game Screen -->
+        <div id="screen-continue" class="ui-screen">
+            <div class="panel text-center">
+                <h2>LOAD PROFILE</h2>
+                <p>Ready to jump back into the apocalypse?</p>
+                <div class="btn-row">
+                    <button id="btn-continue-load" class="btn btn-primary">LOAD GAME</button>
+                    <button id="btn-continue-back" class="btn btn-secondary">BACK</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Game Screen HUD -->
+        <div id="screen-hud" class="ui-screen">
+            <div class="hud-top-left">
+                <div class="stat-bar health">
+                    <span class="bar-label">HP</span>
+                    <div class="bar-track"><div id="hud-hp-fill" class="bar-fill"></div></div>
+                    <span id="hud-hp-text" class="bar-num">100 / 100</span>
+                </div>
+                <div class="stat-bar armor">
+                    <span class="bar-label">ARMOR</span>
+                    <div class="bar-track"><div id="hud-armor-fill" class="bar-fill"></div></div>
+                    <span id="hud-armor-text" class="bar-num">50 / 100</span>
+                </div>
+                <div class="stat-bar stamina">
+                    <span class="bar-label">STAMINA</span>
+                    <div class="bar-track"><div id="hud-stamina-fill" class="bar-fill"></div></div>
+                </div>
+            </div>
+
+            <div class="hud-top-center">
+                <div class="wave-badge">WAVE <span id="hud-wave">1</span></div>
+            </div>
+
+            <div class="hud-top-right">
+                <div class="currency-badge">💰 $<span id="hud-coins">150</span></div>
+                <div class="score-badge">SCORE: <span id="hud-score">0</span></div>
+            </div>
+
+            <div class="hud-bottom-right">
+                <div id="hud-weapon-name" class="weapon-name">Pistol</div>
+                <div id="hud-ammo-text" class="ammo-counter">12 / 96</div>
+            </div>
+        </div>
+
+        <!-- 6. Pause Menu -->
+        <div id="screen-pause" class="ui-screen">
+            <div class="panel text-center">
+                <h2>GAME PAUSED</h2>
+                <div class="menu-buttons">
+                    <button id="btn-pause-resume" class="btn btn-primary">RESUME</button>
+                    <button id="btn-pause-save" class="btn btn-secondary">SAVE GAME</button>
+                    <button id="btn-pause-shop" class="btn btn-secondary">SHOP & WEAPONS</button>
+                    <button id="btn-pause-skills" class="btn btn-secondary">SKILL TREE</button>
+                    <button id="btn-pause-quit" class="btn btn-danger">MAIN MENU</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. Inventory Screen -->
+        <div id="screen-inventory" class="ui-screen">
+            <div class="panel wide-panel">
+                <h2>INVENTORY (24 SLOTS)</h2>
+                <div id="inventory-grid-container" class="inventory-grid"></div>
+                <button class="btn btn-secondary margin-top" onclick="window.ZS.Core.stateManager.setState(window.ZS.Core.STATES.PLAYING)">CLOSE (I)</button>
+            </div>
+        </div>
+
+        <!-- 8. Weapons Armory Screen -->
+        <div id="screen-weapons" class="ui-screen">
+            <div class="panel wide-panel">
+                <h2>ARMORY & UPGRADES</h2>
+                <div id="weapons-list-container"></div>
+                <button class="btn btn-secondary margin-top" onclick="window.ZS.Core.stateManager.setState(window.ZS.Core.STATES.PLAYING)">CLOSE</button>
+            </div>
+        </div>
+
+        <!-- 9. Merchant Shop Screen -->
+        <div id="screen-shop" class="ui-screen">
+            <div class="panel wide-panel">
+                <h2>BLACK MARKET SHOP</h2>
+                <div id="shop-items-container" class="shop-grid"></div>
+                <button class="btn btn-secondary margin-top" onclick="window.ZS.Core.stateManager.setState(window.ZS.Core.STATES.PLAYING)">CLOSE</button>
+            </div>
+        </div>
+
+        <!-- 10. Character Upgrade Screen -->
+        <div id="screen-upgrades" class="ui-screen">
+            <div class="panel">
+                <h2>CHARACTER UPGRADES</h2>
+                <p>Upgrade base attributes using coins.</p>
+                <button id="btn-upgrades-back" class="btn btn-secondary margin-top">CLOSE</button>
+            </div>
+        </div>
+
+        <!-- 11. Skill Tree Screen -->
+        <div id="screen-skill-tree" class="ui-screen">
+            <div class="panel wide-panel">
+                <h2>SKILL TREE</h2>
+                <div id="skill-tree-nodes-container" class="skill-grid"></div>
+                <button class="btn btn-secondary margin-top" onclick="window.ZS.Core.stateManager.setState(window.ZS.Core.STATES.PLAYING)">CLOSE</button>
+            </div>
+        </div>
+
+        <!-- 12. Missions Screen -->
+        <div id="screen-missions" class="ui-screen">
+            <div class="panel wide-panel">
+                <h2>MISSION LOG</h2>
+                <div id="missions-list-container"></div>
+                <button class="btn btn-secondary margin-top" onclick="window.ZS.Core.stateManager.setState(window.ZS.Core.STATES.PLAYING)">CLOSE</button>
+            </div>
+        </div>
+
+        <!-- 13. Achievements Screen -->
+        <div id="screen-achievements" class="ui-screen">
+            <div class="panel wide-panel">
+                <h2>ACHIEVEMENTS (30)</h2>
+                <div id="achievements-grid-container" class="achievements-grid"></div>
+                <button class="btn btn-secondary margin-top" onclick="window.ZS.Core.stateManager.setState(window.ZS.Core.STATES.MENU)">BACK</button>
+            </div>
+        </div>
+
+        <!-- 14. Map Selection Screen -->
+        <div id="screen-map-select" class="ui-screen">
+            <div class="panel wide-panel">
+                <h2>MAP SELECTION (7 MAPS)</h2>
+                <div id="map-select-container" class="map-grid"></div>
+                <button class="btn btn-secondary margin-top" onclick="window.ZS.Core.stateManager.setState(window.ZS.Core.STATES.PLAYING)">CLOSE</button>
+            </div>
+        </div>
+
+        <!-- 15. Settings Screen -->
+        <div id="screen-settings" class="ui-screen">
+            <div class="panel">
+                <h2>SETTINGS & BACKUP</h2>
+                <div class="form-group">
+                    <button id="btn-settings-export" class="btn btn-secondary">EXPORT SAVE</button>
+                    <button id="btn-settings-import" class="btn btn-secondary">IMPORT SAVE</button>
+                </div>
+                <button id="btn-settings-back" class="btn btn-primary margin-top">BACK</button>
+            </div>
+        </div>
+
+        <!-- 16. Statistics Screen -->
+        <div id="screen-statistics" class="ui-screen">
+            <div class="panel">
+                <h2>LIFETIME STATISTICS</h2>
+                <div id="statistics-list-container"></div>
+                <button class="btn btn-secondary margin-top" onclick="window.ZS.Core.stateManager.setState(window.ZS.Core.STATES.MENU)">BACK</button>
+            </div>
+        </div>
+
+        <!-- 17. Game Over Screen -->
+        <div id="screen-game-over" class="ui-screen">
+            <div class="panel text-center">
+                <h1 class="death-title">YOU DIED</h1>
+                <p>The zombie horde overwhelmed you.</p>
+                <div class="btn-row">
+                    <button id="btn-gameover-restart" class="btn btn-primary">RESTART</button>
+                    <button id="btn-gameover-menu" class="btn btn-secondary">MAIN MENU</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 18. Victory Screen -->
+        <div id="screen-victory" class="ui-screen">
+            <div class="panel text-center">
+                <h1 class="victory-title">VICTORY</h1>
+                <p>You survived the zombie apocalypse campaign!</p>
+                <div class="btn-row">
+                    <button id="btn-victory-continue" class="btn btn-primary">ENDLESS MODE</button>
+                    <button id="btn-victory-menu" class="btn btn-secondary">MAIN MENU</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 19. Help / Controls Screen -->
+        <div id="screen-help" class="ui-screen">
+            <div class="panel wide-panel">
+                <h2>CONTROLS & SURVIVAL GUIDE</h2>
+                <div class="controls-grid">
+                    <div>W / A / S / D</div><div>Player Movement</div>
+                    <div>SHIFT</div><div>Sprint (Uses Stamina)</div>
+                    <div>Mouse</div><div>Aim Direction</div>
+                    <div>Left Click</div><div>Shoot / Attack</div>
+                    <div>R</div><div>Reload Weapon</div>
+                    <div>1 / 2 / 3 / 4 / 5</div><div>Weapon Hotbar Select</div>
+                    <div>E</div><div>Interact / Open Doors</div>
+                    <div>I</div><div>Inventory</div>
+                    <div>SPACE</div><div>Special Ability (Adrenaline)</div>
+                    <div>ESC</div><div>Pause Menu</div>
+                </div>
+                <button id="btn-help-back" class="btn btn-secondary margin-top">BACK</button>
+            </div>
+        </div>
+
+        <!-- 20. Credits Screen -->
+        <div id="screen-credits" class="ui-screen">
+            <div class="panel text-center">
+                <h2>CREDITS</h2>
+                <p>ZOMBIE SURVIVAL GAME ENGINE</p>
+                <p>Built with Pure HTML5, CSS3, Vanilla JS, HTML5 Canvas & Web Audio API</p>
+                <button id="btn-credits-back" class="btn btn-secondary margin-top">BACK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Module Script Imports -->
+    <!-- Utilities -->
+    <script src="js/utils/mathUtils.js"></script>
+    <script src="js/utils/collisionUtils.js"></script>
+    <script src="js/utils/spatialHash.js"></script>
+    <script src="js/utils/objectPool.js"></script>
+    <script src="js/utils/logger.js"></script>
+
+    <!-- Core Engine -->
+    <script src="js/core/eventBus.js"></script>
+    <script src="js/core/inputManager.js"></script>
+    <script src="js/core/stateManager.js"></script>
+    <script src="js/core/difficultyManager.js"></script>
+    <script src="js/core/timeManager.js"></script>
+    <script src="js/core/gameLoop.js"></script>
+    <script src="js/core/engine.js"></script>
+
+    <!-- Player -->
+    <script src="js/player/playerStats.js"></script>
+    <script src="js/player/playerVitals.js"></script>
+    <script src="js/player/playerMovement.js"></script>
+    <script src="js/player/playerCombat.js"></script>
+    <script src="js/player/player.js"></script>
+
+    <!-- Weapons -->
+    <script src="js/weapons/weaponBase.js"></script>
+    <script src="js/weapons/projectileManager.js"></script>
+    <script src="js/weapons/recoilSpreadSystem.js"></script>
+    <script src="js/weapons/meleeWeapons.js"></script>
+    <script src="js/weapons/pistolWeapons.js"></script>
+    <script src="js/weapons/automaticWeapons.js"></script>
+    <script src="js/weapons/heavyWeapons.js"></script>
+    <script src="js/weapons/throwableWeapons.js"></script>
+    <script src="js/weapons/weaponRegistry.js"></script>
+
+    <!-- Zombies & AI -->
+    <script src="js/zombies/zombieAI.js"></script>
+    <script src="js/zombies/zombieGroupBehavior.js"></script>
+    <script src="js/zombies/zombieBase.js"></script>
+    <script src="js/zombies/normalZombies.js"></script>
+    <script src="js/zombies/heavyZombies.js"></script>
+    <script src="js/zombies/specialZombies.js"></script>
+    <script src="js/zombies/bossZombies.js"></script>
+    <script src="js/zombies/zombieRegistry.js"></script>
+
+    <!-- Wave Manager -->
+    <script src="js/waves/waveBalancer.js"></script>
+    <script src="js/waves/waveSpawner.js"></script>
+    <script src="js/waves/waveManager.js"></script>
+
+    <!-- Maps & World -->
+    <script src="js/world/mapBase.js"></script>
+    <script src="js/world/obstacleManager.js"></script>
+    <script src="js/world/doorManager.js"></script>
+    <script src="js/world/safeZoneManager.js"></script>
+    <script src="js/world/tileEngine.js"></script>
+    <script src="js/world/abandonedCityMap.js"></script>
+    <script src="js/world/hospitalMap.js"></script>
+    <script src="js/world/policeStationMap.js"></script>
+    <script src="js/world/supermarketMap.js"></script>
+    <script src="js/world/warehouseMap.js"></script>
+    <script src="js/world/militaryBaseMap.js"></script>
+    <script src="js/world/undergroundFacilityMap.js"></script>
+    <script src="js/world/mapManager.js"></script>
+
+    <!-- Inventory & Shop -->
+    <script src="js/inventory/itemBase.js"></script>
+    <script src="js/inventory/itemDatabase.js"></script>
+    <script src="js/inventory/equipmentManager.js"></script>
+    <script src="js/inventory/containerManager.js"></script>
+    <script src="js/inventory/inventoryManager.js"></script>
+    <script src="js/shop/shopManager.js"></script>
+    <script src="js/shop/weaponUpgradesManager.js"></script>
+
+    <!-- Progression, Missions & Achievements -->
+    <script src="js/progression/xpManager.js"></script>
+    <script src="js/progression/levelingSystem.js"></script>
+    <script src="js/progression/skillTreeManager.js"></script>
+    <script src="js/missions/missionDatabase.js"></script>
+    <script src="js/missions/missionManager.js"></script>
+    <script src="js/achievements/achievementDatabase.js"></script>
+    <script src="js/achievements/statisticsTracker.js"></script>
+    <script src="js/achievements/achievementManager.js"></script>
+
+    <!-- Storage, Settings & Audio -->
+    <script src="js/storage/saveSystem.js"></script>
+    <script src="js/storage/settingsManager.js"></script>
+    <script src="js/storage/importExportManager.js"></script>
+    <script src="js/audio/audioManager.js"></script>
+    <script src="js/audio/soundSynthesizer.js"></script>
+    <script src="js/audio/musicSynthesizer.js"></script>
+
+    <!-- Rendering Pipeline -->
+    <script src="js/rendering/camera.js"></script>
+    <script src="js/rendering/worldRenderer.js"></script>
+    <script src="js/rendering/entityRenderer.js"></script>
+    <script src="js/rendering/weaponRenderer.js"></script>
+    <script src="js/rendering/uiRenderer.js"></script>
+    <script src="js/rendering/minimapRenderer.js"></script>
+    <script src="js/rendering/lightingOverlay.js"></script>
+    <script src="js/rendering/renderer.js"></script>
+
+    <!-- Effects -->
+    <script src="js/effects/screenShake.js"></script>
+    <script src="js/effects/damageNumberSystem.js"></script>
+    <script src="js/effects/particleTypes.js"></script>
+    <script src="js/effects/particleEngine.js"></script>
+    <script src="js/effects/bloodDecalSystem.js"></script>
+
+    <!-- UI Controllers -->
+    <script src="js/ui/uiManager.js"></script>
+    <script src="js/ui/screenLoading.js"></script>
+    <script src="js/ui/screenMainMenu.js"></script>
+    <script src="js/ui/screenNewGame.js"></script>
+    <script src="js/ui/screenContinue.js"></script>
+    <script src="js/ui/screenGameHUD.js"></script>
+    <script src="js/ui/screenPause.js"></script>
+    <script src="js/ui/screenInventory.js"></script>
+    <script src="js/ui/screenWeapons.js"></script>
+    <script src="js/ui/screenShop.js"></script>
+    <script src="js/ui/screenUpgrades.js"></script>
+    <script src="js/ui/screenSkillTree.js"></script>
+    <script src="js/ui/screenMissions.js"></script>
+    <script src="js/ui/screenAchievements.js"></script>
+    <script src="js/ui/screenMapSelect.js"></script>
+    <script src="js/ui/screenSettings.js"></script>
+    <script src="js/ui/screenStatistics.js"></script>
+    <script src="js/ui/screenGameOver.js"></script>
+    <script src="js/ui/screenVictory.js"></script>
+    <script src="js/ui/screenHelpControls.js"></script>
+    <script src="js/ui/screenCredits.js"></script>
+
+    <!-- Tests & DevTools -->
+    <script src="js/tests/testRunner.js"></script>
+    <script src="js/tests/playerTests.js"></script>
+    <script src="js/tests/zombieTests.js"></script>
+    <script src="js/tests/weaponTests.js"></script>
+    <script src="js/tests/inventoryTests.js"></script>
+    <script src="js/tests/waveTests.js"></script>
+    <script src="js/tests/saveTests.js"></script>
+    <script src="js/tests/devTools.js"></script>
+
+    <!-- Main Entry Initialization Script -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            // Initialize Master UI Router
+            window.ZS.UI.uiManager.init();
+
+            // Initialize UI Screen Click Controllers
+            window.ZS.UI.ScreenLoading.init();
+            window.ZS.UI.ScreenMainMenu.init();
+            window.ZS.UI.ScreenNewGame.init();
+            window.ZS.UI.ScreenContinue.init();
+            window.ZS.UI.ScreenPause.init();
+            window.ZS.UI.ScreenUpgrades.init();
+            window.ZS.UI.ScreenSettings.init();
+            window.ZS.UI.ScreenGameOver.init();
+            window.ZS.UI.ScreenVictory.init();
+            window.ZS.UI.ScreenHelpControls.init();
+            window.ZS.UI.ScreenCredits.init();
+
+            // Initialize Master Engine & Canvas
+            window.ZS.Core.engine.init('gameCanvas');
+            window.ZS.Core.engine.start();
+
+            // Run automated unit tests in console
+            if (window.ZS.Tests && window.ZS.Tests.testRunner) {
+                window.ZS.Tests.testRunner.runAll();
+            }
+        });
+    </script>
+</body>
+</html>
